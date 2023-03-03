@@ -36,10 +36,40 @@ class Sokoban extends Component{
       //The next title has a box, check if we can push it
       const nextBoxX = nextX + dx;
       const nextBoxY = nextY + dy;
+      if (newBoard[nextBoxX][nextBoxY] === 0){
+        //Move the player and the box to the next title
+        newBoard[x][y] = 0;
+        newBoard[nextX][nextY] = 3;
+        newBoard[nextBoxX][nextBoxY] = 2;
+        this.setState({ board: newBoard, playerPos: [nextX, nextY] });
+      }
     }
+  };
+
+  render(){
+    const { board } = this.state;
+    return (
+      <div className="sokoban">
+        {board.map((row, rowIndex) => (
+          <div className="row" key={rowIndex}>
+            {row.map((title, titleIndex) => (
+              <div
+                className={
+                  title === 1 ? 'wall' : title === 2 ? 'box' : title === 3 ? 'player' : 'empty'
+                }
+                key={titleIndex}
+                onClick={() => this.movePlayer(rowIndex - this.state.playerPos[0], titleIndex - this.state.playerPos[1])}
+              />
+              ))}
+            </div>
+        ))}
+      </div>
+    );
   }
 }
 
+export default Sokoban;
+
 // ========================================
 const root = ReactDOM.createRoot(document.getElementById("root"));
-root.render(<Game />);
+root.render();
