@@ -1,4 +1,4 @@
-### Sokoban
+# Sokoban
 ## Zalozenie projektowe
 
 ## Funkcjonalnosci
