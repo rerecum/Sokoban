@@ -55,3 +55,30 @@ const direction = {
     Down: 40
 }
 
+function getInitialState(levelNo) {
+    const LEVEL = LEVELS[levelNo]
+
+    let level = [], player = {x: null, y: null}, box = []
+    // parse level and init objects
+    for (let y=0; y<level.length; y++) {
+        level[y] = []
+        for (let x=0; x<level[y].length; x++) {
+            if ( [item.Box, item.Player].includes(level[y][x]) )
+            // cast Box, Player as Playground
+            level[y][x] = item.Playground
+        else // otherwise get type from the level map
+            level[y][x] = LEVEL[y][x]
+        if (LEVEL[y][x] === item.Box) box.push({x:x, y:y}) // fill the array of boxes
+        if (LEVEL[y][x] === item.Player) player = {x:x, y:y} // inital player position
+        }
+    }
+    return {
+        levelNo: levelNo,
+        status: gamestate.Running,
+        level, player, box
+    }
+}
+
+export default function Sokoban() {
+
+}
