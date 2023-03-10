@@ -25,7 +25,17 @@ const LEVELS = [ // 0=playground, 1=wall, 2=box (playground bellow), 4=storage, 
       [8,8,1,0,2,0,0,2,0,2,0,2,0,1],
       [8,8,1,0,0,0,0,1,0,0,0,0,0,1],
       [8,8,1,1,1,1,1,1,1,1,1,1,1,1],
-    ] 
+    ],
+    [ // level 3
+        [8, 8, 8, 8, 8, 8, 8, 8],
+        [8, 0, 1, 1, 1, 1, 1, 8],
+        [8, 0, 1, 1, 1, 1, 1, 8],
+        [8, 0, 2, 1, 1, 4, 1, 8],
+        [8, 0, 1, 1, 4, 1, 1, 8],
+        [8, 0, 1, 1, 4, 1, 1, 8],
+        [8, 0, 1, 1, 4, 1, 1, 8],
+        [8, 8, 8, 8, 8, 8, 8, 8],
+      ],
   ]
 //             0       1       2        3     4         5       6     7        8  
 const COLOR = ["#ddd", "#777", "brown", null, "orange", "#000", null, "green", "transparent"]
@@ -147,12 +157,14 @@ export default function Sokoban() {
   return (
     <div className="Sokoban">
       <div>Kacper Hnatyszyn - Sokoban</div>
-      <button onClick={()=> dispatch({type: ACTION.RestartLevel})}>Restart level</button>
-      {state.status === GAME_STATE.Done && state.levelNo<LEVELS.length-1 && <button onClick={()=> dispatch({type: ACTION.PlayNextLevel})}>Next level</button>}
-      {state.status === GAME_STATE.Done && <h3>Level completed!</h3>}
+      <button onClick={()=> dispatch({type: ACTION.RestartLevel})}>Reset</button><br></br>
+      {state.status === GAME_STATE.Done && state.levelNo<LEVELS.length-1 && <button onClick={()=> dispatch({type: ACTION.PlayNextLevel})}>Następny poziom</button>}
+      {state.status === GAME_STATE.Done && <h3>Poziom ukończony!</h3>}
         {[...state.level].map( (row, y) => {
           return <div key={`${y}`} style={{display: 'block', lineHeight: 0}}>{
-            row.map( (col, x) => {return <div key={`${y}-${x}`} style={{backgroundColor: COLOR[getColor(y,x, col, state.player, state.box, state.level[y][x]===ITEM.Storage)], width: "20px", height:"20px", display:"inline-block", border: state.level[y][x]===ITEM.World ? '1px solid transparent': '1px solid #ccc'}}/>})  
+            row.map( (col, x) => {return <div key={`${y}-${x}`} style={
+                {backgroundColor: COLOR[getColor(y,x, col, state.player, state.box, state.level[y][x]===ITEM.Storage)],
+                width: "20px", height:"20px", display:"inline-block", border: state.level[y][x]===ITEM.World ? '1px solid transparent': '1px solid #ccc'}}/>})  
           }</div> 
         })}
     </div>
