@@ -82,14 +82,15 @@ function getInitialState(levelNo) {
 function GameReducer(state, action) {
     switch (action.type) {
 
-        case ACTION.RestartLevel:
+        case action.RestartLevel:
             return {...getInitialState(state.levelNo), status: gamestate.Running}
 
-        case ACTION.PlayNextLevel:
+        case action.PlayNextLevel:
             return {...getInitialState(state.levelNo+1), status: gamestate.Running}
 
-        case ACTION.move:
+        case action.move:
             let d = {x: 0, y: 0} // d -> direction, b -> box
+            let b = {x: 0, y: 0}
             console.log(action.keyCode)
             // Simple moves action
             if (direction.Left === action.keyCode)  d.x-- 
@@ -116,12 +117,34 @@ function GameReducer(state, action) {
                         else
                             return b
                     } ) }
-                }
+                    // Check level completed or game finished
+                    let boxesInPlace = 0
+                    newState.box.forEach(b=>{ if (newState.level[b.y][b.x] === item.Storage) boxesInPlace++ })
+                    if (boxesInPlace === newState.box.length) return {...newState, status: gamestate.Done}
+                    return newState
+                }else // can't to move the box, player must to stay at the same position
+                return {...state}
             }
+            // Standart movement without interaction with the boxes
+            return {...state, player: {x: state.player.x+d.x, y: state.player.y+d.y}}
+            default:
     }
+    return state
 }
 
-//<================================>
+function getColor(y, x, color, player, box, isStorage) {
+    if (player.y === y && player.x === x) return item.Player
+    if (box.find ( b => (b.y === y && b.x === x) ) && isStorage ) return ColorInPlace // index of green color
+    if (box.find ( b => (b.y === y && b.x === x) ) ) return item.Box
+
+    return color
+}
+
 export default function Sokoban() {
-
+    let [state, dispatch] = useReducer(GameReducer, getInitialState(0) )
+    console.log(state)
 }
+
+    function handleMove(e) {
+        
+    }
