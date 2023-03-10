@@ -28,15 +28,30 @@ const LEVELS = [ // 0 = playground, 1 = wall, 2 = box (playground bellow), 4 = s
         [8,8,1,1,1,1,1,1,1,1,1,1,1,1],
     ]
 ]
-//             0       1       2        3     4         5       6     7        8  
-const COLOR = ["#ddd", "#777", "brown", null, "orange", "#000", null, "green", "transparent"]
-const COLOR_IN_PLACE = 7 // index of green color from COLORS
 
-const ITEM = {
-    Playground:       0,
-    Wall:             1,
-    Box:              2,
-    Storage:          4,
-    Player:           5,
-    World:            8 
+const color = ["#ddd", "#777", "brown", null, "orange", "#000", null, "green", "transparent"]
+const ColorInPlace = 7 // index of green color from COLORS
+const item = {
+    Playground:0,
+    Wall: 1,
+    Box: 2,
+    Storage: 4,
+    Player: 5,
+    World: 8 
 }
+const gamestate = {
+    Running: "RUNNING",
+    Done: "DONE"
+}
+const action = {
+    move: "MOVE",
+    RestartLevel: "RESTART_LEVEL",
+    PlayNextLevel: "PLAY_NEXT_LEVEL"
+}
+const direction = {
+    Left: 37,
+    Right: 39,
+    Up: 38,
+    Down: 40
+}
+
