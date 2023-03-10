@@ -146,7 +146,7 @@ export default function Sokoban() {
 
   return (
     <div className="Sokoban">
-      <div>React Sokoban. controls: LEFT, RIGHT, UP, DOWN. colors: black=player, brown=box, orange=destination, green=box in place</div>
+      <div>Kacper Hnatyszyn - Sokoban</div>
       <button onClick={()=> dispatch({type: ACTION.RestartLevel})}>Restart level</button>
       {state.status === GAME_STATE.Done && state.levelNo<LEVELS.length-1 && <button onClick={()=> dispatch({type: ACTION.PlayNextLevel})}>Next level</button>}
       {state.status === GAME_STATE.Done && <h3>Level completed!</h3>}
