@@ -151,3 +151,10 @@ export default function Sokoban() {
             dispatch({type: action.move, keyCode: e.keyCode})
         }
     }
+
+    useEffect(() => {
+        document.addEventListener('keydown', handleMove);
+        return () => {document.removeEventListener('keydown', handleMove); } // destroy
+    });
+
+    
