@@ -146,5 +146,8 @@ export default function Sokoban() {
 }
 
     function handleMove(e) {
-        
+        if ( [direction.Left, direction.Right, direction.Up, direction.Down].includes(e.keyCode) ) {
+            e.preventDefault();
+            dispatch({type: action.move, keyCode: e.keyCode})
+        }
     }
