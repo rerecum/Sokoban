@@ -23,8 +23,8 @@ function Menu() {
         <small class="text-muted"> K.H.4prT5</small>
         </h3>
         <div class="btn-group">
-      <button class="btn btn-outline-primary" onClick={startGame}>Graj</button><br />
-      <a class="btn btn-outline-light" href="https://github.com/rerecum/Sokoban/blob/Sokoban/README.md" target="_blank" rel="noreferrer">Założenie projektowe</a>
+      <button class="btn btn-primary" onClick={startGame}>Graj</button><br />
+      <a class="btn btn-light" href="https://github.com/rerecum/Sokoban/blob/Sokoban/README.md" target="_blank" rel="noreferrer">Założenie projektowe</a>
       </div>
     </div>
   );
