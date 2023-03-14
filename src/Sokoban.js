@@ -58,7 +58,8 @@ const ACTION = {
   Move:             "MOVE", 
   RestartLevel:     "RESTART_LEVEL",
   PlayNextLevel:    "PLAY_NEXT_LEVEL",
-  Skip:             "SKIP_TO_NEXT_LEVEL"
+  Skip:             "SKIP_TO_NEXT_LEVEL",
+  Menu:             "BACK_TO_MENU"
 }
 const DIRECTION = { 
   Left:             37, 
@@ -159,9 +160,14 @@ export default function Sokoban() {
     return () => { document.removeEventListener('keydown', handleMove); }
   });  
 
+  function refreshPage() {
+    window.location.reload(false);
+  }
+
   return (
     <div className="Sokoban">
       <div class="btn-group center">
+      <button class="btn btn-dark" onClick={refreshPage}>Menu</button>
       <button class="btn btn-primary" onClick={()=> dispatch({type: ACTION.Skip})}>Skip</button>
       <button class="btn btn-danger" onClick={()=> dispatch({type: ACTION.RestartLevel})}>Reset</button>
       </div>
