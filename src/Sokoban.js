@@ -1,7 +1,17 @@
 import React, {useEffect, useReducer} from "react"
 
 const LEVELS = [ // 0=playground, 1=wall, 2=box (playground bellow), 4=storage, 5=player (playground bellow), 8=outside world
-    [ // level 1      
+    [ // level 1
+      [8, 8, 8, 8, 8, 8, 8, 8],
+      [8, 1, 1, 1, 1, 1, 1, 8],
+      [8, 1, 5, 0, 0, 0, 1, 8],
+      [8, 1, 0, 0, 2, 0, 1, 8],
+      [8, 1, 0, 0, 1, 1, 1, 8],
+      [8, 1, 0, 0, 0, 4, 1, 8],
+      [8, 1, 1, 1, 1, 1, 1, 8],
+      [8, 8, 8, 8, 8, 8, 8, 8],
+    ],
+    [ // level 2    
       [8,8,8,8,1,1,1,1,1,8,8,8,8,8,8,8,8,8,8],
       [8,8,8,8,1,0,0,0,1,8,8,8,8,8,8,8,8,8,8],
       [8,8,8,8,1,2,0,0,1,8,8,8,8,8,8,8,8,8,8],
@@ -14,7 +24,7 @@ const LEVELS = [ // 0=playground, 1=wall, 2=box (playground bellow), 4=storage, 
       [8,8,8,8,1,0,0,0,0,0,1,1,1,1,1,1,1,1,1],
       [8,8,8,8,1,1,1,1,1,1,1,8,8,8,8,8,8,8,8],
     ],
-    [ // level 2      
+    [ // level 3      
       [1,1,1,1,1,1,1,1,1,1,1,1,8,8],
       [1,4,4,0,0,1,0,0,0,0,0,1,1,1],
       [1,4,4,0,0,1,0,2,0,0,2,0,0,1],
@@ -26,16 +36,6 @@ const LEVELS = [ // 0=playground, 1=wall, 2=box (playground bellow), 4=storage, 
       [8,8,1,0,0,0,0,1,0,0,0,0,0,1],
       [8,8,1,1,1,1,1,1,1,1,1,1,1,1],
     ],
-    [ // level 3
-        [8, 8, 8, 8, 8, 8, 8, 8],
-        [8, 0, 1, 1, 1, 1, 1, 8],
-        [8, 0, 1, 1, 1, 1, 1, 8],
-        [8, 0, 2, 1, 1, 4, 1, 8],
-        [8, 0, 1, 1, 4, 1, 1, 8],
-        [8, 0, 1, 1, 4, 1, 1, 8],
-        [8, 0, 1, 1, 4, 1, 1, 8],
-        [8, 8, 8, 8, 8, 8, 8, 8],
-      ],
   ]
 //             0       1       2        3     4         5       6     7        8  
 const COLOR = ["#ddd", "#777", "brown", null, "orange", "#000", null, "green", "transparent"]
@@ -151,7 +151,7 @@ export default function Sokoban() {
 
   useEffect(() => {
     document.addEventListener('keydown', handleMove); 
-    return () => { document.removeEventListener('keydown', handleMove); }              // destroy
+    return () => { document.removeEventListener('keydown', handleMove); }
   });  
 
   return (
