@@ -17,10 +17,15 @@ function Menu() {
   }
 
   return (
-    <div>
-      <h1>Sokoban Beta</h1>
-      <h5>Kacper Hnatyszyn 4prT5</h5>
-      <button class="graj" onClick={startGame}>Graj</button>
+    <div class="container">
+        <h3>
+        Sokoban Beta
+        <small class="text-muted"> K.H.4prT5</small>
+        </h3>
+        <div class="btn-group">
+      <button class="btn btn-outline-primary" onClick={startGame}>Graj</button><br />
+      <a class="btn btn-outline-light" href="https://github.com/rerecum/Sokoban/blob/Sokoban/README.md" target="_blank" rel="noreferrer">Założenie projektowe</a>
+      </div>
     </div>
   );
 }

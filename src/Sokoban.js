@@ -12,6 +12,7 @@ const LEVELS = [ // 0=playground, 1=wall, 2=box (playground bellow), 4=storage, 
       [8, 8, 8, 8, 8, 8, 8, 8],
     ],
     [ // level 2    
+      [8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8],
       [8,8,8,8,1,1,1,1,1,8,8,8,8,8,8,8,8,8,8],
       [8,8,8,8,1,0,0,0,1,8,8,8,8,8,8,8,8,8,8],
       [8,8,8,8,1,2,0,0,1,8,8,8,8,8,8,8,8,8,8],
@@ -25,6 +26,7 @@ const LEVELS = [ // 0=playground, 1=wall, 2=box (playground bellow), 4=storage, 
       [8,8,8,8,1,1,1,1,1,1,1,8,8,8,8,8,8,8,8],
     ],
     [ // level 3      
+      [8,8,8,8,8,8,8,8,8,8,8,8,8,8],
       [1,1,1,1,1,1,1,1,1,1,1,1,8,8],
       [1,4,4,0,0,1,0,0,0,0,0,1,1,1],
       [1,4,4,0,0,1,0,2,0,0,2,0,0,1],
@@ -55,7 +57,8 @@ const GAME_STATE = {
 const ACTION = {
   Move:             "MOVE", 
   RestartLevel:     "RESTART_LEVEL",
-  PlayNextLevel:    "PLAY_NEXT_LEVEL"
+  PlayNextLevel:    "PLAY_NEXT_LEVEL",
+  Skip:             "SKIP_TO_NEXT_LEVEL"
 }
 const DIRECTION = { 
   Left:             37, 
@@ -89,6 +92,8 @@ function getInitialState(levelNo) {
 
 function GameReducer(state, action) {
   switch (action.type) {
+    case ACTION.Skip:
+      return {...getInitialState(state.levelNo), status: GAME_STATE.Done}
     case ACTION.RestartLevel:
       return {...getInitialState(state.levelNo), status: GAME_STATE.Running}
     case ACTION.PlayNextLevel:
@@ -156,9 +161,12 @@ export default function Sokoban() {
 
   return (
     <div className="Sokoban">
-      <button class="graj" onClick={()=> dispatch({type: ACTION.RestartLevel})}>Reset</button><br></br>
-      {state.status === GAME_STATE.Done && state.levelNo<LEVELS.length-1 && <button onClick={()=> dispatch({type: ACTION.PlayNextLevel})}>Następny poziom</button>}
-      {state.status === GAME_STATE.Done && <h3>Poziom ukończony!</h3>}
+      <div class="btn-group center">
+      <button class="btn btn-primary" onClick={()=> dispatch({type: ACTION.Skip})}>Skip</button>
+      <button class="btn btn-danger" onClick={()=> dispatch({type: ACTION.RestartLevel})}>Reset</button>
+      </div>
+      {state.status === GAME_STATE.Done && state.levelNo<LEVELS.length-1 && <button class="btn btn-success" onClick={()=> dispatch({type: ACTION.PlayNextLevel})}>Następny poziom</button>}
+      {state.status === GAME_STATE.Done}
         {[...state.level].map( (row, y) => {
           return <div key={`${y}`} style={{display: 'block', lineHeight: 0}}>{
             row.map( (col, x) => {return <div key={`${y}-${x}`} style={

@@ -1,6 +1,6 @@
+import 'bootstrap/dist/css/bootstrap.css';
 import React from 'react';
 import ReactDOM from 'react-dom';
-// import Sokoban from './Sokoban';
 import './App.css';
 import SokobanStart from './SokobanStart';
 
