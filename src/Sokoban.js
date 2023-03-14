@@ -67,8 +67,8 @@ const LEVELS = [ // 0=playground, 1=wall, 2=box (playground bellow), 4=storage, 
       [8,8,1,1,1,1,1,1,1,1,1,1,1,1],
     ],
 ]
-//             0       1       2        3     4         5       6     7        8  
-const COLOR = ["#ddd", "#777", "brown", null, "orange", "#000", null, "green", "transparent"]
+//             0       1       2        3     4               6     7        8  
+const COLOR = ["#ddd", "#777", "brown", null, "orange", null, "green", "transparent"]
 const COLOR_IN_PLACE = 7 // index of green color from COLORS
 const ITEM = {
   Playground:       0,
@@ -166,16 +166,12 @@ function GameReducer(state, action) {
   return state
 }
 
+function Player() {
+  return <img src="public/i5.gif" alt="player" style={{ width: "36px", height: "36px" }} />;
+}
+
 function getColor(y,x, color, player, box, isStorage) {
-  if (player.y === y && player.x === x){
-    return (
-      <img
-        src="i5.gif"
-        alt="Player"
-        style={{ width: "100%", height: "100%" }}
-      />
-    );
-  }
+  if (player.y === y && player.x === x) return <Player />;
   if (box.find( b => (b.y===y && b.x===x)) && isStorage ) return COLOR_IN_PLACE // index of the green color  
   if (box.find( b => (b.y===y && b.x===x)))               return ITEM.Box  
   return color
