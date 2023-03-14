@@ -1,11 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Sokoban from './Sokoban';
+// import Sokoban from './Sokoban';
 import './App.css';
+import SokobanStart from './SokobanStart';
 
-ReactDOM.render(
-  <React.StrictMode>
-    <Sokoban />
-  </React.StrictMode>,
-  document.getElementById('root')
-);
+ReactDOM.render(<SokobanStart />, document.getElementById("root"));

@@ -156,8 +156,7 @@ export default function Sokoban() {
 
   return (
     <div className="Sokoban">
-      <div>Kacper Hnatyszyn - Sokoban</div>
-      <button onClick={()=> dispatch({type: ACTION.RestartLevel})}>Reset</button><br></br>
+      <button class="graj" onClick={()=> dispatch({type: ACTION.RestartLevel})}>Reset</button><br></br>
       {state.status === GAME_STATE.Done && state.levelNo<LEVELS.length-1 && <button onClick={()=> dispatch({type: ACTION.PlayNextLevel})}>Następny poziom</button>}
       {state.status === GAME_STATE.Done && <h3>Poziom ukończony!</h3>}
         {[...state.level].map( (row, y) => {
