@@ -1,6 +1,6 @@
 body {
   font: 1rem/1.5 var(--bs-font-sans-serif);
-  background-image: linear-gradient(to right, #2b5876 , #4e4376);
+  background-color: gray;
   color: white;
   padding: 20px;
   font-family: Verdana, Geneva, Tahoma, sans-serif;

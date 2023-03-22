@@ -1,5 +1,7 @@
 import React, {useEffect, useReducer} from "react"
-import gracz from "./i5.gif"
+import gracz from "./i5.png"
+import skrzynka from "./unnamed.png"
+import sciana from "./wall.png"
 
 const LEVELS = [ // 0=playground, 1=wall, 2=box (playground bellow), 4=storage, 5=player (playground bellow), 8=outside world
     [ // level 1
@@ -68,8 +70,8 @@ const LEVELS = [ // 0=playground, 1=wall, 2=box (playground bellow), 4=storage, 
       [8,8,1,1,1,1,1,1,1,1,1,1,1,1],
     ],
 ]
-//             0       1       2        3         4        5               6       7        8  
-const COLOR = ["#ddd", "#777", "brown", null, "orange", `url(${gracz})` ,null, "green", "transparent"]
+//               0           1                 2              3       4           5            6       7         8  
+const COLOR = ["gray", `url(${sciana})`, `url(${skrzynka})`, null, "orange", `url(${gracz})` ,null, "green", "transparent"]
 const COLOR_IN_PLACE = 7 // index of green color from COLORS
 const ITEM = {
   Playground:       0,
@@ -207,7 +209,7 @@ export default function Sokoban() {
           return <div key={`${y}`} style={{display: 'block', lineHeight: 0}}>{
             row.map( (col, x) => {return <div key={`${y}-${x}`} style={
                 {background: COLOR[getColor(y,x, col, state.player, state.box, state.level[y][x]===ITEM.Storage)],
-                backgroundSize: "cover", width: "20px", height:"20px", display:"inline-block", border: state.level[y][x]===ITEM.World ? '1px solid transparent': '1px solid #ccc'}}/>})  
+                backgroundSize: "cover", width: "20px", height:"20px", display:"inline-block" }}/>})  
           }</div> 
         })}
     </div>
