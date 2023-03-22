@@ -4,6 +4,10 @@ import Sokoban from './Sokoban.js';
 function Menu() {
   const [showGame, setShowGame] = useState(false);
 
+  const [warunek, _] = useState(false);
+    if (warunek){
+    }
+
   const startGame = () => {
     setShowGame(true);
   }
@@ -24,7 +28,13 @@ function Menu() {
         <div class="btn-group">
       <button class="btn btn-primary" onClick={startGame}>Graj</button><br />
       <a class="btn btn-light" href="https://github.com/rerecum/Sokoban/blob/Sokoban/README.md" target="_blank" rel="noreferrer">Założenie projektowe</a>
-      </div>
+      </div> <br />
+      <button class="levels btn btn-dark" onClick={startGame}>Poziom 1</button>
+      <button disabled={!warunek} class="levels btn btn-dark">Poziom 2</button>
+      <button disabled={!warunek} class="levels btn btn-dark">Poziom 3</button>
+      <button disabled={!warunek} class="levels btn btn-dark">Poziom 4</button>
+      <button disabled={!warunek} class="levels btn btn-dark">Poziom 5</button>
+      <button disabled={!warunek} class="levels btn btn-dark">Poziom 6</button>
     </div>
   );
 }

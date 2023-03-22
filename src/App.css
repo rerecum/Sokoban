@@ -28,3 +28,11 @@ a{
   width: max-content;
   display: grid;
 }
+
+.levels{
+  margin: 3px;
+}
+
+div div{
+  background-size: cover !important;
+}

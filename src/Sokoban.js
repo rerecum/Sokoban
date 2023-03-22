@@ -1,4 +1,5 @@
 import React, {useEffect, useReducer} from "react"
+import gracz from "./i5.gif"
 
 const LEVELS = [ // 0=playground, 1=wall, 2=box (playground bellow), 4=storage, 5=player (playground bellow), 8=outside world
     [ // level 1
@@ -67,8 +68,8 @@ const LEVELS = [ // 0=playground, 1=wall, 2=box (playground bellow), 4=storage, 
       [8,8,1,1,1,1,1,1,1,1,1,1,1,1],
     ],
 ]
-//             0       1       2        3     4        5       6     7        8  
-const COLOR = ["#ddd", "#777", "brown", null, "orange", "#000" ,null, "green", "transparent"]
+//             0       1       2        3         4        5               6       7        8  
+const COLOR = ["#ddd", "#777", "brown", null, "orange", `url(${gracz})` ,null, "green", "transparent"]
 const COLOR_IN_PLACE = 7 // index of green color from COLORS
 const ITEM = {
   Playground:       0,
@@ -167,7 +168,7 @@ function GameReducer(state, action) {
 }
 
 function getColor(y,x, color, player, box, isStorage) {
-  if (player.y === y && player.x === x)                   return <img src="i5.gif" alt="player" style={{ width: "auto", height: "auto" }} />;
+  if (player.y === y && player.x === x)                   return 5;
   if (box.find( b => (b.y===y && b.x===x)) && isStorage ) return COLOR_IN_PLACE // index of the green color  
   if (box.find( b => (b.y===y && b.x===x)))               return ITEM.Box  
   return color
@@ -205,8 +206,8 @@ export default function Sokoban() {
         {[...state.level].map( (row, y) => {
           return <div key={`${y}`} style={{display: 'block', lineHeight: 0}}>{
             row.map( (col, x) => {return <div key={`${y}-${x}`} style={
-                {backgroundColor: COLOR[getColor(y,x, col, state.player, state.box, state.level[y][x]===ITEM.Storage)],
-                width: "20px", height:"20px", display:"inline-block", border: state.level[y][x]===ITEM.World ? '1px solid transparent': '1px solid #ccc'}}/>})  
+                {background: COLOR[getColor(y,x, col, state.player, state.box, state.level[y][x]===ITEM.Storage)],
+                backgroundSize: "cover", width: "20px", height:"20px", display:"inline-block", border: state.level[y][x]===ITEM.World ? '1px solid transparent': '1px solid #ccc'}}/>})  
           }</div> 
         })}
     </div>
