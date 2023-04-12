@@ -26,15 +26,11 @@ function Menu() {
         <small class="text-muted"> K.H.4prT5</small>
         </h3>
         <div class="btn-group">
-      <button class="btn btn-primary" onClick={startGame}>Graj</button><br />
-      <a class="btn btn-light" href="https://github.com/rerecum/Sokoban/blob/Sokoban/README.md" target="_blank" rel="noreferrer">Założenie projektowe</a>
+      <a class="btn btn-primary" href="https://github.com/rerecum/Sokoban/blob/Sokoban/README.md" target="_blank" rel="noreferrer">Założenie projektowe</a>
       </div> <br />
-      <button class="levels btn btn-dark" onClick={startGame}>Poziom 1</button>
-      <button disabled={!warunek} class="levels btn btn-dark">Poziom 2</button>
-      <button disabled={!warunek} class="levels btn btn-dark">Poziom 3</button>
-      <button disabled={!warunek} class="levels btn btn-dark">Poziom 4</button>
-      <button disabled={!warunek} class="levels btn btn-dark">Poziom 5</button>
-      <button disabled={!warunek} class="levels btn btn-dark">Poziom 6</button>
+      <button class="levels btn btn-dark" onClick={startGame}>Etap 1</button>
+      <button disabled={!warunek} class="levels btn btn-dark">Etap 2</button>
+      <button disabled={!warunek} class="levels btn btn-dark">Etap 3</button>
     </div>
   );
 }

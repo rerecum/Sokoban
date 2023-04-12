@@ -209,7 +209,6 @@ export default function Sokoban() {
           return <div key={`${y}`} style={{display: 'block', lineHeight: 0}}>{
             row.map( (col, x) => {return <div key={`${y}-${x}`} style={
                 {background: COLOR[getColor(y,x, col, state.player, state.box, state.level[y][x]===ITEM.Storage)],
-                  transform: `rotateZ(${(DIRECTION.Left)?"90deg": "0deg"})`,
                 backgroundSize: "cover", width: "20px", height:"20px", display:"inline-block" }}/>})  
           }</div> 
         })}
